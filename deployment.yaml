@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: book-show
+  labels:
+    app: book-show
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: book-show
+  template:
+    metadata:
+      labels:
+        app: book-show
+    spec:
+      containers:
+      - name: book-show
+        image: yomihubhub/book-show:latest
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: book-show-service
+  labels:
+    app: book-show
+    release: prometheus
+spec:
+  selector:
+    app: book-show
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 5000
+  type: ClusterIP
+
