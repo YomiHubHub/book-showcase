@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: book-show
-        image: yomihubhub/book-show:2026-05-13-120530
+        image: yomihubhub/book-show:2026-05-13-121129
         ports:
         - containerPort: 5000
 ---
